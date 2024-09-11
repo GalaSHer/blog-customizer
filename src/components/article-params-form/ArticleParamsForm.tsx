@@ -3,7 +3,7 @@ import { ArrowButton } from 'components/arrow-button';
 import { Button } from 'components/button';
 
 import styles from './ArticleParamsForm.module.scss';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Select } from '../select';
 import { RadioGroup } from '../radio-group';
 import {
@@ -19,11 +19,13 @@ import { Separator } from '../separator';
 import { useOutsideClickClose } from '../select/hooks/useOutsideClickClose';
 
 type ArticleParamsFormProps = {
+	rootRef: React.RefObject<HTMLDivElement>;
 	onFormSubmit: (formData: ArticleStateType) => void;
 	onFormReset: (formData: ArticleStateType) => void;
 };
 
 export const ArticleParamsForm = ({
+	rootRef,
 	onFormSubmit,
 	onFormReset,
 }: ArticleParamsFormProps) => {
@@ -41,8 +43,6 @@ export const ArticleParamsForm = ({
 	const handleArrowBtnClick = () => {
 		setOpened(!isOpened);
 	};
-
-	const rootRef = useRef<HTMLDivElement>(null);
 
 	useOutsideClickClose({
 		isOpen: isOpened,
@@ -75,7 +75,7 @@ export const ArticleParamsForm = ({
 	};
 
 	return (
-		<div ref={rootRef}>
+		<>
 			<ArrowButton handler={handleArrowBtnClick} containerState={isOpened} />
 			<aside
 				className={clsx(styles.container, {
@@ -125,6 +125,6 @@ export const ArticleParamsForm = ({
 					</div>
 				</form>
 			</aside>
-		</div>
+		</>
 	);
 };

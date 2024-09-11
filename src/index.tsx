@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { StrictMode, CSSProperties, useState } from 'react';
+import { StrictMode, CSSProperties, useState, useRef } from 'react';
 import clsx from 'clsx';
 
 import { Article } from './components/article/Article';
@@ -22,8 +22,11 @@ const App = () => {
 		setStyleState(formData);
 	};
 
+	const appRef = useRef<HTMLDivElement>(null);
+
 	return (
 		<div
+			ref={appRef}
 			className={clsx(styles.main)}
 			style={
 				{
@@ -35,6 +38,7 @@ const App = () => {
 				} as CSSProperties
 			}>
 			<ArticleParamsForm
+				rootRef={appRef}
 				onFormSubmit={handleFormSubmit}
 				onFormReset={handleFormSubmit}
 			/>
