@@ -7,7 +7,7 @@ import arrowDown from 'src/images/arrow-down.svg';
 import { Option } from './Option';
 import { isFontFamilyClass } from './helpers/isFontFamilyClass';
 import { useEnterSubmit } from './hooks/useEnterSubmit';
-import { useOutsideClickClose } from './hooks/useOutsideClickClose';
+import { useOutsideClickClose } from '../hooks/useOutsideClickClose';
 
 import styles from './Select.module.scss';
 
@@ -64,6 +64,7 @@ export const Select = (props: SelectProps) => {
 					src={arrowDown}
 					alt='иконка стрелочки'
 					className={clsx(styles.arrow, { [styles.arrow_open]: isOpen })}
+					onClick={handlePlaceHolderClick}
 				/>
 				<div
 					className={clsx(
